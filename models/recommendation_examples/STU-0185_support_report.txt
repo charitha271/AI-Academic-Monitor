@@ -1,0 +1,40 @@
+STUDENT: STU-0185
+LEARNING STATUS: Low
+
+TOPICS NEEDING ATTENTION:
+- Data Structures and Algorithms - Dynamic Programming [Support priority]
+  Early score: 90.44; trend: -2.13; question accuracy: 0.90; practice hours: 1.91
+  Why: Declining early topic trend
+  Recommended support: Review recurrence design, memoization, and tabulation through guided problems. Review recent prerequisite concepts and complete additional guided practice.
+- Database Management Systems - ER Model [Support priority]
+  Early score: 78.24; trend: -6.48; question accuracy: 0.78; practice hours: 1.91
+  Why: Declining early topic trend
+  Recommended support: Review entities, relationships, cardinality, and ER diagram construction; complete design exercises. Review recent prerequisite concepts and complete additional guided practice.
+- Operating Systems - File Systems [Support priority]
+  Early score: 68.86; trend: -3.65; question accuracy: 0.69; practice hours: 1.91
+  Why: Declining early topic trend
+  Recommended support: Review files, directories, allocation, and file-system organization; complete short exercises. Review recent prerequisite concepts and complete additional guided practice.
+- Data Structures and Algorithms - Graph Algorithms [Support priority]
+  Early score: 82.24; trend: -3.12; question accuracy: 0.75; practice hours: 1.91
+  Why: Declining early topic trend
+  Recommended support: Revise BFS and DFS and practice graph traversal problems. Review recent prerequisite concepts and complete additional guided practice.
+- Computer Networks - Network Security [Support priority]
+  Early score: 79.08; trend: -2.24; question accuracy: 0.68; practice hours: 1.91
+  Why: Declining early topic trend
+  Recommended support: Review common network-security principles and controls; complete concept-check questions. Review recent prerequisite concepts and complete additional guided practice.
+
+WHY?
+- Model-contribution reasons describe SHAP contributions to the prediction; they are not causal explanations.
+- Question accuracy supported the Low model output
+- Quiz performance supported the Low model output
+- Average topic score supported the Low model output
+
+RECOMMENDED SUPPORT:
+- Prioritize the listed topics with short, topic-specific practice sessions.
+- Review progress after the next learning cycle; these recommendations do not guarantee improvement.
+
+PROGRESS:
+- early_average_topic_score: 78.742
+- early_topic_score_trend: -1.822
+- early_question_accuracy: 0.777
+- early_practice_hours: 1.908

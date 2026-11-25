@@ -1,0 +1,151 @@
+{% extends "student_base.html" %}
+
+{% block title %}My Performance - Student Learning Support Dashboard{% endblock %}
+
+{% block content %}
+<section id="tab-student-performance" class="view-pane active performance-page">
+    <header class="section-header-block mb-20">
+        <h2>My Academic Performance</h2>
+        <p>Review your assessment results, subject comparisons, attendance, and progress over time.</p>
+    </header>
+
+    <section class="performance-section" aria-labelledby="academic-performance-heading">
+        <div class="performance-section-heading">
+            <div>
+                <h3 id="academic-performance-heading" class="box-title">Overall Academic Performance</h3>
+                <p class="box-desc">Your current results across assessments and recorded overall attendance.</p>
+            </div>
+        </div>
+        <div class="performance-kpi-grid">
+            <div class="kpi-card performance-kpi-card">
+                <div class="kpi-title">Overall Performance</div>
+                <div id="perfOverallScore" class="kpi-value">--</div>
+                <span class="performance-kpi-note">Average of your assessment results</span>
+            </div>
+            <div class="kpi-card performance-kpi-card">
+                <div class="kpi-title">Attendance</div>
+                <div id="perfAttendance" class="kpi-value">--%</div>
+                <span class="performance-kpi-note">Overall attendance</span>
+            </div>
+            <div class="kpi-card performance-kpi-card">
+                <div class="kpi-title">Quiz Average</div>
+                <div id="perfQuiz" class="kpi-value">--</div>
+            </div>
+            <div class="kpi-card performance-kpi-card">
+                <div class="kpi-title">Assignment Average</div>
+                <div id="perfAssignment" class="kpi-value">--</div>
+            </div>
+            <div class="kpi-card performance-kpi-card">
+                <div class="kpi-title">Internal Assessment Average</div>
+                <div id="perfIA" class="kpi-value">--</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="performance-section" aria-labelledby="personal-summary-heading">
+        <div class="performance-section-heading">
+            <div>
+                <h3 id="personal-summary-heading" class="box-title">Your Academic Summary</h3>
+                <p class="box-desc">A quick, personalized read of your results and recent progress.</p>
+            </div>
+        </div>
+        <article id="studentAcademicSummary" class="academic-summary-card" aria-live="polite">
+            <div class="academic-summary-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3 14.8 8.7 21 9.6l-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9L12 3Z"></path>
+                </svg>
+            </div>
+            <div class="academic-summary-content">
+                <p id="studentAcademicSummaryText">Your academic summary will appear when results are available.</p>
+                <div id="academicSummarySignals" class="academic-summary-signals"></div>
+            </div>
+        </article>
+    </section>
+
+    <section class="performance-section" aria-labelledby="strongest-subject-heading">
+        <div class="performance-section-heading">
+            <div>
+                <h3 id="strongest-subject-heading" class="box-title">Your Strongest Subject</h3>
+                <p class="box-desc">Your highest current overall subject score.</p>
+            </div>
+        </div>
+        <div id="strongestSubjectCard" aria-live="polite"></div>
+        <p id="strongestSubjectEmpty" class="performance-empty-state" hidden>Strongest subject will appear when subject scores are available.</p>
+    </section>
+
+    <section class="performance-section" aria-labelledby="subject-overview-heading">
+        <div class="performance-section-heading">
+            <div>
+                <h3 id="subject-overview-heading" class="box-title">Subject Performance Overview</h3>
+                <p class="box-desc">Compare each subject's overall score, assessment averages, and synthetic attendance. Strong ≥85%, Good ≥70%, Needs Improvement &lt;70%.</p>
+            </div>
+        </div>
+        <div id="subjectPerformanceCards" class="subject-performance-grid" aria-live="polite"></div>
+        <p id="subjectPerformanceEmpty" class="performance-empty-state" hidden>Subject performance is not available yet.</p>
+    </section>
+
+    <section class="performance-section" aria-labelledby="subject-attendance-heading">
+        <div class="performance-section-heading">
+            <div>
+                <h3 id="subject-attendance-heading" class="box-title">Subject-Wise Attendance</h3>
+                <p class="box-desc">Synthetic demonstration values only—not verified attendance records and they do not change your recorded overall attendance.</p>
+            </div>
+        </div>
+        <div id="subjectAttendanceList" class="subject-attendance-grid" aria-live="polite"></div>
+        <p id="subjectAttendanceEmpty" class="performance-empty-state" hidden>Subject attendance display will appear with subject performance data.</p>
+    </section>
+
+    <section class="performance-section card-box" aria-labelledby="subject-chart-heading">
+        <div class="chart-header">
+            <div>
+                <h3 id="subject-chart-heading" class="box-title">Subject-Wise Performance Chart</h3>
+                <span id="subjectChartNote" class="box-desc">Grouped percentages compare overall performance, quizzes, assignments, internal assessments, and synthetic attendance*. *Attendance is demonstration data, not a verified record.</span>
+            </div>
+        </div>
+        <div class="detailed-chart-wrapper performance-subject-chart-wrapper">
+            <canvas id="studentSubjectChart" role="img" aria-label="Grouped horizontal comparison of overall score, quiz, assignment, internal assessment, and synthetic attendance by subject" aria-describedby="subjectChartNote"></canvas>
+        </div>
+        <p id="studentSubjectEmpty" class="box-desc" hidden>Subject performance is not available yet.</p>
+    </section>
+
+    <section class="performance-section card-box" aria-labelledby="weekly-progress-heading">
+        <div class="chart-header">
+            <div>
+                <h3 id="weekly-progress-heading" class="box-title">Weekly Academic Progress</h3>
+                <span id="weeklyProgressChartNote" class="box-desc">Overall assessment average and recorded attendance across observed weeks. Hover or focus a point for its value.</span>
+            </div>
+        </div>
+        <div class="detailed-chart-wrapper">
+            <canvas id="studentDetailedChart" role="img" aria-label="Weekly overall assessment average and recorded attendance trends" aria-describedby="weeklyProgressChartNote"></canvas>
+        </div>
+        <p id="studentProgressEmpty" class="performance-empty-state" hidden></p>
+    </section>
+
+    <section class="performance-section card-box" aria-labelledby="subject-table-heading">
+        <div class="chart-header">
+            <div>
+                <h3 id="subject-table-heading" class="box-title">Detailed Subject-Wise Analysis</h3>
+                <span class="box-desc">Exact overall and assessment averages. Subject attendance is synthetic demonstration data.</span>
+            </div>
+        </div>
+        <div class="table-responsive performance-table-wrapper">
+            <table class="data-table performance-table">
+                <caption class="sr-only">Subject-wise overall performance, synthetic attendance, and assessment averages</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Overall Score</th>
+                        <th scope="col">Attendance*</th>
+                        <th scope="col">Quiz Average</th>
+                        <th scope="col">Assignment Average</th>
+                        <th scope="col">Internal Assessment</th>
+                    </tr>
+                </thead>
+                <tbody id="studentSubjectTableBody"></tbody>
+            </table>
+        </div>
+        <p class="performance-data-note">* Synthetic demonstration attendance; not a verified attendance record and does not change your overall attendance.</p>
+    </section>
+
+</section>
+{% endblock %}

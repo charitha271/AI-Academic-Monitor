@@ -1,0 +1,91 @@
+{% extends "parent_base.html" %}
+
+{% block title %}Parent Dashboard - Academic Monitoring{% endblock %}
+
+{% block content %}
+<section id="tab-overview" class="view-pane active parent-dashboard">
+    <header class="parent-page-heading">
+        <div>
+            <span class="parent-page-kicker">STUDENT SNAPSHOT</span>
+            <h2>Your child's academic progress</h2>
+            <p>A clear overview of current results, attendance, and ways to offer support.</p>
+        </div>
+        <span class="parent-read-only-label">Read-only view</span>
+    </header>
+
+    <section id="statusCard" class="status-card status-low parent-status-panel" aria-labelledby="parentStatusHeading">
+            <div class="status-card-header">
+                <h2 id="parentStatusHeading">Overall academic status</h2>
+                <span id="statusBadge" class="status-tag success">Loading...</span>
+            </div>
+            <p id="statusDesc" class="status-desc-text">Checking the latest academic progress.</p>
+            <p class="parent-status-context">A helpful early indicator based on the academic information currently available.</p>
+    </section>
+
+    <section class="parent-progress-summary" aria-labelledby="parentProgressSummaryHeading" aria-live="polite">
+        <div class="parent-summary-icon" aria-hidden="true">↗</div>
+        <div>
+            <h3 id="parentProgressSummaryHeading">Progress summary</h3>
+            <p id="parentProgressSummary">A brief summary of recent academic progress will appear when student records load.</p>
+        </div>
+    </section>
+
+    <section class="parent-metrics-section" aria-labelledby="parentPerformanceHeading">
+        <div class="section-title-bar">
+            <div>
+                <h3 id="parentPerformanceHeading" class="section-subtitle">Overall Performance</h3>
+                <p class="parent-section-caption">Assessment averages and recorded overall attendance</p>
+            </div>
+        </div>
+        <div class="kpi-grid">
+            <article class="kpi-card parent-kpi-primary">
+                <div class="kpi-title">Overall Academic Performance</div>
+                <div id="kpiOverallScore" class="kpi-value">--</div>
+                <div class="kpi-subtext">Average across assessments</div>
+            </article>
+            <article class="kpi-card parent-attendance-kpi">
+                <div class="kpi-title">Attendance</div>
+                <div id="kpiAttendance" class="kpi-value">--%</div>
+                <div id="kpiAttendanceNote" class="parent-kpi-context">Recorded overall attendance</div>
+            </article>
+            <article class="kpi-card">
+                <div class="kpi-title">Quiz Average</div>
+                <div id="kpiQuiz" class="kpi-value">--</div>
+            </article>
+            <article class="kpi-card">
+                <div class="kpi-title">Assignment Average</div>
+                <div id="kpiAssignment" class="kpi-value">--</div>
+            </article>
+            <article class="kpi-card">
+                <div class="kpi-title">Internal Assessment Average</div>
+                <div id="kpiIA" class="kpi-value">--</div>
+            </article>
+        </div>
+    </section>
+
+    <div class="overview-split-grid parent-overview-grid">
+        <section class="overview-chart-box" aria-labelledby="parentTrendHeading">
+            <div class="box-header">
+                <div>
+                    <h3 id="parentTrendHeading" class="box-title">Weekly Academic Progress</h3>
+                    <span id="parentTrendNote" class="box-desc">Weekly assessment average and recorded attendance across observed weeks. Hover or focus a point for its value.</span>
+                </div>
+            </div>
+            <div class="small-chart-wrapper parent-progress-chart">
+                <canvas id="overviewTrendChart" role="img" aria-label="Weekly assessment average and recorded attendance trend" aria-describedby="parentTrendNote"></canvas>
+            </div>
+            <p id="overviewTrendEmpty" class="parent-chart-empty" hidden></p>
+            <p class="parent-chart-note">Both lines use percentages. Attendance shown here is recorded overall attendance.</p>
+        </section>
+        <section class="overview-attention-box" aria-labelledby="parentSuggestionsHeading">
+            <div class="box-header">
+                <div>
+                    <h3 id="parentSuggestionsHeading" class="box-title">Suggestions for Parents</h3>
+                    <span class="box-desc">Simple ways to support your child.</span>
+                </div>
+            </div>
+            <ul id="parentSupportSuggestions" class="parent-suggestions-list"></ul>
+        </section>
+    </div>
+</section>
+{% endblock %}

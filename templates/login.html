@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Academic Monitor</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/design-system.css">
+</head>
+<body class="login-body">
+
+<div class="login-wrapper">
+    <div class="login-split-card">
+        <!-- Left Brand Panel -->
+        <div class="login-brand-panel">
+            <div class="brand-header-group">
+                <div class="brand-insignia">
+                    <div class="brand-insignia-icon">
+                        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 3 2.5 8 12 13l9.5-5L12 3Z"></path>
+                            <path d="M6.5 11v5.5c3.4 2.7 7.6 2.7 11 0V11"></path>
+                            <path d="M21.5 8v6"></path>
+                        </svg>
+                    </div>
+                    <h2>AI Academic Monitor</h2>
+                </div>
+
+                <h1 class="brand-headline">Explainable AI-Based Student Progress Prediction and Parental Monitoring System</h1>
+            </div>
+        </div>
+
+        <!-- Right Authentication Panel -->
+        <div class="login-form-panel">
+            <div class="login-form-header">
+                <span class="login-eyebrow">SECURE PORTAL ACCESS</span>
+                <h3>Welcome back</h3>
+                <p>Choose your portal and sign in to continue.</p>
+            </div>
+
+            <div class="role-selector-group">
+                <label class="role-selector-label">Choose your role</label>
+                <div class="role-tabs">
+                    <button type="button" class="role-tab active" id="parentRoleBtn" data-role="parent" aria-pressed="true">
+                        <div class="role-tab-icon">
+                            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle>
+                                <path d="M20 8v6M23 11h-6"></path>
+                            </svg>
+                        </div>
+                        <span class="role-tab-copy">
+                            <strong class="role-tab-text">Parent</strong>
+                            <span class="role-tab-sub">Academic Monitoring</span>
+                        </span>
+                        <span class="role-selected-mark" aria-hidden="true">✓</span>
+                    </button>
+                    <button type="button" class="role-tab" id="studentRoleBtn" data-role="student" aria-pressed="false">
+                        <div class="role-tab-icon">
+                            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="m2 9 10-5 10 5-10 5L2 9Z"></path><path d="M6 11v5c3.7 2.8 8.3 2.8 12 0v-5"></path><path d="M22 9v6"></path>
+                            </svg>
+                        </div>
+                        <span class="role-tab-copy">
+                            <strong class="role-tab-text">Student</strong>
+                            <span class="role-tab-sub">Personal Learning Portal</span>
+                        </span>
+                        <span class="role-selected-mark" aria-hidden="true">✓</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="roleNoticeBanner" class="role-notice-banner parent-mode" aria-live="polite">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span id="roleNoticeText">Read-only access to academic progress and attendance.</span>
+            </div>
+
+            <!-- Error Message Alert -->
+            <div id="loginError" class="login-error-alert" style="display: none;" role="alert"></div>
+
+            <!-- Login Form -->
+            <form id="loginForm" method="POST" action="/login" class="login-form">
+                <input type="hidden" name="role" id="selectedRoleInput" value="parent">
+
+                <div class="form-group">
+                    <label for="studentIdInput" id="studentIdLabel">Student ID</label>
+                    <div class="input-wrapper">
+                        <svg class="input-leading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4"></circle><path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+                        </svg>
+                        <input type="text" id="studentIdInput" name="student_id" class="form-input" placeholder="e.g. STU-0004" value="STU-0004" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordInput">Password</label>
+                    <div class="password-wrapper">
+                        <svg class="input-leading-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <input type="password" id="passwordInput" name="password" class="form-input" placeholder="Enter your password" required autocomplete="current-password">
+                        <button type="button" id="togglePasswordBtn" class="toggle-password-btn" aria-label="Show password" aria-pressed="false" title="Show password">
+                            <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitLoginBtn" class="login-submit-btn">
+                    <span>Sign in to dashboard</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+
+            <div class="demo-credentials-box">
+                <div class="demo-box-heading">
+                    <span class="demo-box-title">Demo access</span>
+                    <span class="demo-box-caption">Optional quick-fill</span>
+                </div>
+                <div class="demo-btn-row">
+                    <button type="button" class="demo-fill-btn" id="fillParentDemoBtn">
+                        <strong>Parent demo</strong>
+                        <span>STU-0004 <i>/</i> parent123</span>
+                    </button>
+                    <button type="button" class="demo-fill-btn" id="fillStudentDemoBtn">
+                        <strong>Student demo</strong>
+                        <span>STU-0004 <i>/</i> student123</span>
+                    </button>
+                </div>
+                <div class="demo-note">One student profile, with a portal tailored to each role.</div>
+            </div>
+
+            <div class="login-form-footer">
+                <img src="/static/images/academic_symbol.svg" alt="" width="24" height="24">
+                <span>AI Academic Monitor <span aria-hidden="true">·</span> Learning with clarity</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const parentRoleBtn = document.getElementById("parentRoleBtn");
+    const studentRoleBtn = document.getElementById("studentRoleBtn");
+    const selectedRoleInput = document.getElementById("selectedRoleInput");
+    const roleNoticeBanner = document.getElementById("roleNoticeBanner");
+    const roleNoticeText = document.getElementById("roleNoticeText");
+    const studentIdInput = document.getElementById("studentIdInput");
+    const passwordInput = document.getElementById("passwordInput");
+    const togglePasswordBtn = document.getElementById("togglePasswordBtn");
+    const loginError = document.getElementById("loginError");
+    const loginForm = document.getElementById("loginForm");
+    const fillParentDemoBtn = document.getElementById("fillParentDemoBtn");
+    const fillStudentDemoBtn = document.getElementById("fillStudentDemoBtn");
+
+    function setRole(role) {
+        selectedRoleInput.value = role;
+        const isParent = role === "parent";
+        parentRoleBtn.setAttribute("aria-pressed", String(isParent));
+        studentRoleBtn.setAttribute("aria-pressed", String(!isParent));
+        if (isParent) {
+            parentRoleBtn.classList.add("active");
+            studentRoleBtn.classList.remove("active");
+            roleNoticeBanner.className = "role-notice-banner parent-mode";
+            roleNoticeText.textContent = "Read-only access to academic progress and attendance.";
+        } else {
+            studentRoleBtn.classList.add("active");
+            parentRoleBtn.classList.remove("active");
+            roleNoticeBanner.className = "role-notice-banner student-mode";
+            roleNoticeText.textContent = "Your personal space for learning progress and practical study suggestions.";
+        }
+    }
+
+    parentRoleBtn.addEventListener("click", () => setRole("parent"));
+    studentRoleBtn.addEventListener("click", () => setRole("student"));
+
+    fillParentDemoBtn.addEventListener("click", () => {
+        setRole("parent");
+        studentIdInput.value = "STU-0004";
+        passwordInput.value = "parent123";
+        hideError();
+    });
+
+    fillStudentDemoBtn.addEventListener("click", () => {
+        setRole("student");
+        studentIdInput.value = "STU-0004";
+        passwordInput.value = "student123";
+        hideError();
+    });
+
+    togglePasswordBtn.addEventListener("click", () => {
+        const isPassword = passwordInput.getAttribute("type") === "password";
+        passwordInput.setAttribute("type", isPassword ? "text" : "password");
+        togglePasswordBtn.classList.toggle("revealed", isPassword);
+        togglePasswordBtn.setAttribute("aria-pressed", String(isPassword));
+        togglePasswordBtn.setAttribute("aria-label", isPassword ? "Hide password" : "Show password");
+        togglePasswordBtn.title = isPassword ? "Hide password" : "Show password";
+    });
+
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        hideError();
+
+        const role = selectedRoleInput.value;
+        const studentId = studentIdInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!studentId || !password) {
+            showError("Please enter both Student ID and Password.");
+            return;
+        }
+
+        try {
+            const res = await fetch("/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    role: role,
+                    student_id: studentId,
+                    password: password
+                })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                showError(data.error || "Invalid login credentials. Please try again.");
+                return;
+            }
+
+            if (data.redirect_url) {
+                window.location.href = data.redirect_url;
+            } else {
+                window.location.href = role === "parent" ? `/parent?student_id=${studentId}` : `/student?student_id=${studentId}`;
+            }
+        } catch (err) {
+            console.error("Login submission error:", err);
+            showError("Connection error during login. Please ensure the server is running.");
+        }
+    });
+
+    function showError(msg) {
+        loginError.textContent = msg;
+        loginError.style.display = "block";
+    }
+
+    function hideError() {
+        loginError.style.display = "none";
+        loginError.textContent = "";
+    }
+});
+</script>
+
+</body>
+</html>

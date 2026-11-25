@@ -1,0 +1,95 @@
+{% extends "student_base.html" %}
+
+{% block title %}My Overview - Student Learning Support Dashboard{% endblock %}
+
+{% block content %}
+<section id="tab-student-overview" class="view-pane active">
+    <div class="student-greeting-banner">
+        <div class="greeting-text">
+            <div class="greeting-portal-badge">AI Academic Monitor &bull; Student Portal</div>
+            <h2>Welcome back!</h2>
+            <p>Your progress at a glance, with a clear next step when you need one.</p>
+        </div>
+        <div class="greeting-action-badge">
+            <img src="/static/images/student_study_art.svg" alt="Student studying" class="greeting-art-img">
+        </div>
+    </div>
+
+    <section id="statusCard" class="status-card status-low student-overview-status" aria-labelledby="studentStatusHeading">
+        <div class="status-card-header">
+            <h2 id="studentStatusHeading">Current academic status</h2>
+            <span id="statusBadge" class="status-tag success">Loading...</span>
+        </div>
+        <p id="statusDesc" class="status-desc-text">Checking your academic progress.</p>
+    </section>
+
+    <div class="student-summary-grid mb-24">
+        <section class="student-progress-card card-box" aria-labelledby="studentProgressHeading">
+            <div class="section-title-bar">
+                <h3 id="studentProgressHeading" class="section-subtitle">Overall performance</h3>
+                <span id="studentOverallScore" class="student-overall-score">--%</span>
+            </div>
+            <p id="studentProgressText" class="guidance-overview-text">Your overall assessment progress will appear here.</p>
+            <div
+                id="studentProgressTrack"
+                class="student-progress-track"
+                role="progressbar"
+                aria-label="Overall academic performance"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+            >
+                <div id="studentProgressBar" class="student-progress-fill"></div>
+            </div>
+            <span class="student-progress-caption">Average across quizzes, assignments, and internal assessments</span>
+        </section>
+
+        <section class="student-activity-card card-box" aria-labelledby="studentActivityHeading">
+            <div class="section-title-bar">
+                <h3 id="studentActivityHeading" class="section-subtitle">Learning Activity</h3>
+            </div>
+            <p class="student-activity-caption">Across <span id="studentWeeksObserved">--</span> tracked weeks</p>
+            <div class="student-activity-grid">
+                <div class="student-activity-stat">
+                    <strong id="studentTotalLogins">--</strong>
+                    <span>Portal visits</span>
+                </div>
+                <div class="student-activity-stat">
+                    <strong id="studentTotalResources">--</strong>
+                    <span>Learning resources</span>
+                </div>
+                <div class="student-activity-stat">
+                    <strong id="studentTotalPractice">--</strong>
+                    <span>Practice sessions</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="performance-section student-overview-summary" aria-labelledby="studentOverviewSummaryHeading">
+        <div class="performance-section-heading">
+            <div>
+                <h3 id="studentOverviewSummaryHeading" class="box-title">Your academic highlights</h3>
+                <p class="box-desc">A short, personalized read of your results and recent progress.</p>
+            </div>
+        </div>
+        <article class="academic-summary-card" aria-live="polite">
+            <div class="academic-summary-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3 14.8 8.7 21 9.6l-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9L12 3Z"></path>
+                </svg>
+            </div>
+            <div class="academic-summary-content">
+                <p id="studentAcademicSummaryText">Your academic highlights will appear when results are available.</p>
+                <p id="studentOverviewMessage" class="student-overview-encouragement">Keep building steady learning habits, one step at a time.</p>
+                <div id="academicSummarySignals" class="academic-summary-signals"></div>
+                <nav class="student-overview-actions" aria-label="Continue learning">
+                    <a class="section-nav-link" href="/student/performance?student_id={{ student_id or 'STU-0004' }}">Explore subject performance <span aria-hidden="true">→</span></a>
+                    <a class="section-nav-link" href="/student/recommendations?student_id={{ student_id or 'STU-0004' }}">View study recommendations <span aria-hidden="true">→</span></a>
+                </nav>
+            </div>
+        </article>
+    </section>
+
+</section>
+{% endblock %}

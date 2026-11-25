@@ -1,0 +1,9 @@
+setting
+data=early_prediction_dataset.csv
+input_weeks=1-6; target_weeks=7-10
+test_size=0.20
+random_state=42
+stratify=academic_difficulty
+"class_weights={1: 0.5772005772005772, 0: 1.084010840108401, 2: 2.898550724637681}"
+xgboost_objective=multi:softprob; num_class=3; sample_weight=inverse_frequency
+"models=logistic_regression, random_forest, svm, xgboost"

@@ -1,0 +1,124 @@
+{% extends "student_base.html" %}
+
+{% block title %}My Recommendations - Student Learning Support Dashboard{% endblock %}
+
+{% block content %}
+<section id="tab-student-recommendations" class="view-pane active recommendations-page">
+    <header class="section-header-block mb-20">
+        <h2>My Recommendations</h2>
+        <p>Turn your current results into a few practical steps you can fit into your week.</p>
+    </header>
+
+    <section class="recommendations-section improvement-summary-section" aria-labelledby="improvement-areas-heading">
+        <div class="recommendations-heading">
+            <div>
+                <span class="recommendation-section-kicker">YOUR STARTING POINT</span>
+                <h3 id="improvement-areas-heading">Your Improvement Areas</h3>
+                <p>Based on your subject results and existing recommendations. Subject attendance values are synthetic demonstration data.</p>
+            </div>
+            <span class="recommendations-heading-icon" aria-hidden="true">◎</span>
+        </div>
+        <div id="improvementSummary" class="improvement-summary" aria-live="polite">
+            Your personalised improvement summary will appear when your results load.
+        </div>
+    </section>
+
+    <section id="personalised-plan-section" class="recommendations-section weekly-planner-section" aria-labelledby="personalised-plan-heading">
+        <div class="recommendations-heading">
+            <div>
+                <span class="planner-suggested-label">Suggested plan · rule-based</span>
+                <h3 id="personalised-plan-heading">Your Personalised Weekly Study Plan</h3>
+                <p>Seven achievable study suggestions shaped by your current subject scores, attendance, and recommendation signals. Adapt the plan to your schedule; it is optional.</p>
+            </div>
+            <span class="recommendations-heading-icon cyan" aria-hidden="true">▦</span>
+        </div>
+        <ol id="recommendationWeeklyStudyPlan" class="recommendation-weekly-plan" aria-live="polite"></ol>
+        <p id="recommendationPlanEmpty" class="recommendation-empty" hidden>A weekly plan will appear when subject performance data is available.</p>
+    </section>
+
+    <div class="recommendations-two-column">
+        <section class="recommendations-section daily-tasks-section" aria-labelledby="today-tasks-heading">
+            <div class="recommendations-heading">
+                <div>
+                    <span class="recommendation-section-kicker">ONE STEP FOR TODAY</span>
+                    <h3 id="today-tasks-heading">Today's Study Tasks</h3>
+                    <p id="todayTaskCaption">Your suggested task for today.</p>
+                </div>
+                <span class="recommendations-heading-icon cyan" aria-hidden="true">✓</span>
+            </div>
+            <div id="todayStudyTasks" class="today-task-list" aria-live="polite">
+                <p class="recommendation-empty">Loading your suggested tasks...</p>
+            </div>
+            <p id="taskSaveError" class="task-save-error" role="alert" hidden></p>
+        </section>
+
+        <section class="recommendations-section weekly-progress-section" aria-labelledby="weekly-progress-heading">
+            <div class="recommendations-heading">
+                <div>
+                    <span class="recommendation-section-kicker">YOUR CHECK-IN</span>
+                    <h3 id="weekly-progress-heading">Your Weekly Progress</h3>
+                    <p>Your completed study tasks this week.</p>
+                </div>
+                <span class="recommendations-heading-icon" aria-hidden="true">↗</span>
+            </div>
+            <div class="task-progress-stats">
+                <div><strong id="weeklyTaskTotal">0</strong><span>Suggested</span></div>
+                <div><strong id="weeklyTaskCompleted">0</strong><span>Completed</span></div>
+                <div><strong id="weeklyTaskPending">0</strong><span>Pending</span></div>
+            </div>
+            <div class="task-progress-heading">
+                <span>Weekly completion</span>
+                <strong id="weeklyTaskPercent">0%</strong>
+            </div>
+            <div class="task-progress-track" role="progressbar" aria-label="Weekly task completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span id="weeklyTaskProgressBar" class="task-progress-fill"></span>
+            </div>
+            <p id="weeklyProgressWeekLabel" class="weekly-progress-week-label"></p>
+        </section>
+    </div>
+
+    <section class="recommendations-section priority-recommendations-section" aria-labelledby="priority-recommendations-heading">
+        <div class="recommendations-heading">
+            <div>
+                <span class="recommendation-section-kicker">SUBJECT-BY-SUBJECT GUIDANCE</span>
+                <h3 id="priority-recommendations-heading">Priority-Based Recommendations</h3>
+                <p>See why a subject is flagged and choose a practical action. Subject attendance values are synthetic demonstration data.</p>
+            </div>
+        </div>
+        <div class="recommendation-priority-columns">
+            <section class="recommendation-priority-group high" aria-labelledby="high-priority-heading">
+                <h4 id="high-priority-heading"><span aria-hidden="true">●</span> High priority</h4>
+                <div id="highPriorityRecommendations" class="recommendation-card-list" aria-live="polite"></div>
+                <p id="highPriorityEmpty" class="recommendation-empty" hidden>No high-priority subject areas identified.</p>
+            </section>
+            <section class="recommendation-priority-group medium" aria-labelledby="medium-priority-heading">
+                <h4 id="medium-priority-heading"><span aria-hidden="true">●</span> Medium priority</h4>
+                <div id="mediumPriorityRecommendations" class="recommendation-card-list" aria-live="polite"></div>
+                <p id="mediumPriorityEmpty" class="recommendation-empty" hidden>No medium-priority subject areas identified.</p>
+            </section>
+            <section class="recommendation-priority-group maintain" aria-labelledby="maintain-priority-heading">
+                <h4 id="maintain-priority-heading"><span aria-hidden="true">●</span> Maintain progress</h4>
+                <div id="maintainRecommendations" class="recommendation-card-list" aria-live="polite"></div>
+                <p id="maintainEmpty" class="recommendation-empty" hidden>No subjects currently meet the maintain-progress rules.</p>
+            </section>
+        </div>
+        <p class="recommendation-scoring-note">
+            High: overall score below 65%, any assessment below 60%, subject attendance below 75%, or an existing High engine flag.
+            Medium: overall score below 75%, any assessment below 70%, subject attendance below 85%, or an existing Medium engine flag.
+            Maintain: overall score at least 75%, assessments at least 70%, subject attendance at least 85%, and no High/Medium engine flag.
+        </p>
+    </section>
+
+    <section class="recommendations-section smart-tips-section" aria-labelledby="smart-tips-heading">
+        <div class="recommendations-heading">
+            <div>
+                <h3 id="smart-tips-heading">Smart Study Tips</h3>
+                <p>Practical suggestions linked to your current assessment and attendance results.</p>
+            </div>
+            <span class="recommendations-heading-icon" aria-hidden="true">✦</span>
+        </div>
+        <ul id="studentStudyTipsList" class="smart-study-tips" aria-live="polite"></ul>
+        <p id="smartTipsEmpty" class="recommendation-empty" hidden>No specific study tips are indicated by the available data.</p>
+    </section>
+</section>
+{% endblock %}

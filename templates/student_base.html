@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Student Learning Support Dashboard{% endblock %} - AI Academic Monitor</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/design-system.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/chart_theme.js"></script>
+</head>
+<body class="app-body {% if active_page == 'performance' %}student-performance-view{% endif %}">
+
+<div class="app-layout">
+
+    <!-- ====================================================================
+         LEFT SIDEBAR NAVIGATION (Student Improvement Portal)
+         ==================================================================== -->
+    <aside class="app-sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <h2>AI Academic Monitor</h2>
+                <span>Student Learning Portal</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Student Learning Navigation">
+            <a href="/student?student_id={{ student_id or 'STU-0004' }}" class="nav-item {% if active_page == 'overview' %}active{% endif %}" data-nav="overview" aria-label="My Overview">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </span>
+                <span class="nav-label">My Overview</span>
+            </a>
+            <a href="/student/performance?student_id={{ student_id or 'STU-0004' }}" class="nav-item {% if active_page == 'performance' %}active{% endif %}" data-nav="performance" aria-label="My Performance">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                </span>
+                <span class="nav-label">My Performance</span>
+            </a>
+            <a href="/student/ai-insights?student_id={{ student_id or 'STU-0004' }}" class="nav-item {% if active_page == 'ai-insights' %}active{% endif %}" data-nav="ai-insights" aria-label="AI Learning Insights">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                    </svg>
+                </span>
+                <span class="nav-label">AI Learning Insights</span>
+            </a>
+            <a href="/student/recommendations?student_id={{ student_id or 'STU-0004' }}" class="nav-item {% if active_page == 'recommendations' %}active{% endif %}" data-nav="recommendations" aria-label="My Recommendations">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                </span>
+                <span class="nav-label">My Recommendations</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-role-indicator">
+                <span class="student-sidebar-dot"></span>
+                <span>Student Mode (Improvement)</span>
+            </div>
+            <a href="/logout" class="sidebar-logout-link" title="Logout and return to login">
+                <span class="nav-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ====================================================================
+         MAIN APP CONTAINER
+         ==================================================================== -->
+    <div class="app-main-wrapper">
+
+        <!-- Top App Bar -->
+        <header class="app-topbar">
+            <div class="topbar-left">
+                <h1 class="topbar-title">Student Learning Dashboard</h1>
+                <div class="topbar-student-badge">
+                    <span class="badge-label">Student ID:</span>
+                    <strong id="linkedStudentBadge">{{ student_id or 'STU-0004' }}</strong>
+                </div>
+                <span id="topbarStatusBadge" class="status-tag success">Loading...</span>
+            </div>
+
+            <div class="topbar-right">
+                <!-- Compact Student Account Selector (Demo Support) -->
+                <div class="topbar-selector-box">
+                    <label for="studentSelect" class="topbar-select-label">Account:</label>
+                    <select id="studentSelect" class="topbar-select" aria-label="Select Demo Student">
+                        <option value="{{ student_id or 'STU-0004' }}" selected>{{ student_id or 'STU-0004' }}</option>
+                    </select>
+                </div>
+
+                <div id="loadingIndicator" class="loading-indicator" role="status" aria-live="polite" aria-atomic="true" style="display: none;">
+                    <div class="spinner" aria-hidden="true"></div>
+                    <span>Loading...</span>
+                </div>
+
+                <a href="/login" class="topbar-switch-role" title="Change Role or Student Account">
+                    <span>Switch Role</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Body Content Area -->
+        <main class="app-content-area">
+
+            <!-- Error Banner -->
+            <div id="errorBanner" class="error-banner" role="alert" style="display: none;"></div>
+
+            {% block content %}{% endblock %}
+
+        </main>
+
+        <!-- Application Footer -->
+        <footer class="app-footer">
+            <p><strong>Student Portal:</strong> Track your academic progress and build steady study habits.</p>
+            <p>AI Academic Monitor &bull; Learning support</p>
+        </footer>
+
+    </div>
+
+</div>
+
+<!-- Client Controller Script -->
+<script src="/static/js/student_dashboard.js"></script>
+
+</body>
+</html>

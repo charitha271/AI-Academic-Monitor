@@ -1,0 +1,40 @@
+STUDENT: STU-0187
+LEARNING STATUS: Moderate
+
+TOPICS NEEDING ATTENTION:
+- Database Management Systems - Normalization [High priority]
+  Early score: 43.69; trend: 2.19; question accuracy: 0.60; practice hours: 2.09
+  Why: Lower early topic score, Lower question accuracy
+  Recommended support: Review functional dependencies and normal forms; practice decomposition examples. Practice topic-specific questions and review mistakes after each attempt. Use a concise concept review before attempting the practice set.
+- Database Management Systems - SQL Joins [High priority]
+  Early score: 47.76; trend: 1.75; question accuracy: 0.61; practice hours: 2.09
+  Why: Lower early topic score, Lower question accuracy
+  Recommended support: Review join types and join conditions; practice queries that combine related tables. Practice topic-specific questions and review mistakes after each attempt. Use a concise concept review before attempting the practice set.
+- Mathematics - Calculus [Support priority]
+  Early score: 68.96; trend: 0.33; question accuracy: 0.59; practice hours: 2.09
+  Why: Lower question accuracy
+  Recommended support: Review derivative and integral concepts; complete guided calculation practice. Practice topic-specific questions and review mistakes after each attempt.
+- Data Structures and Algorithms - Dynamic Programming [Support priority]
+  Early score: 56.84; trend: -2.67; question accuracy: 0.77; practice hours: 2.09
+  Why: Declining early topic trend
+  Recommended support: Review recurrence design, memoization, and tabulation through guided problems. Review recent prerequisite concepts and complete additional guided practice.
+- Computer Networks - OSI and TCP/IP [Support priority]
+  Early score: 72.71; trend: 1.30; question accuracy: 0.63; practice hours: 2.09
+  Why: Lower question accuracy
+  Recommended support: Review the layers and compare OSI with TCP/IP; practice protocol-layer classification questions. Practice topic-specific questions and review mistakes after each attempt.
+
+WHY?
+- Model-contribution reasons describe SHAP contributions to the prediction; they are not causal explanations.
+- Question accuracy supported the Moderate model output
+- quiz_score_trend supported the Moderate model output
+- Practice activity supported the Moderate model output
+
+RECOMMENDED SUPPORT:
+- Prioritize the listed topics with short, topic-specific practice sessions.
+- Review progress after the next learning cycle; these recommendations do not guarantee improvement.
+
+PROGRESS:
+- early_average_topic_score: 67.030
+- early_topic_score_trend: 0.615
+- early_question_accuracy: 0.717
+- early_practice_hours: 2.092

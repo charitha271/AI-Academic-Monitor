@@ -1,0 +1,40 @@
+STUDENT: STU-0311
+LEARNING STATUS: Moderate
+
+TOPICS NEEDING ATTENTION:
+- Operating Systems - CPU Scheduling [High priority]
+  Early score: 50.23; trend: 2.69; question accuracy: 0.57; practice hours: 1.59
+  Why: Lower early topic score, Lower question accuracy
+  Recommended support: Review scheduling criteria and algorithms; solve scheduling timeline problems. Practice topic-specific questions and review mistakes after each attempt. Use a concise concept review before attempting the practice set.
+- Operating Systems - Deadlocks [High priority]
+  Early score: 53.35; trend: -2.58; question accuracy: 0.81; practice hours: 1.59
+  Why: Lower early topic score, Declining early topic trend
+  Recommended support: Review deadlock conditions, prevention, avoidance, and detection; practice resource-allocation examples. Review recent prerequisite concepts and complete additional guided practice. Use a concise concept review before attempting the practice set.
+- Data Structures and Algorithms - Linked Lists [High priority]
+  Early score: 52.60; trend: -0.95; question accuracy: 0.61; practice hours: 1.59
+  Why: Lower early topic score, Lower question accuracy
+  Recommended support: Review node links, insertion, deletion, and traversal; practice pointer-tracing problems. Practice topic-specific questions and review mistakes after each attempt. Use a concise concept review before attempting the practice set.
+- Operating Systems - Memory Management [High priority]
+  Early score: 50.79; trend: -2.10; question accuracy: 0.68; practice hours: 1.59
+  Why: Lower early topic score, Declining early topic trend
+  Recommended support: Review paging, segmentation, and virtual memory; practice address-translation questions. Review recent prerequisite concepts and complete additional guided practice. Use a concise concept review before attempting the practice set.
+- Computer Networks - Network Security [Support priority]
+  Early score: 65.40; trend: -1.59; question accuracy: 0.77; practice hours: 1.59
+  Why: Declining early topic trend
+  Recommended support: Review common network-security principles and controls; complete concept-check questions. Review recent prerequisite concepts and complete additional guided practice.
+
+WHY?
+- Model-contribution reasons describe SHAP contributions to the prediction; they are not causal explanations.
+- Average topic score supported the Moderate model output
+- quiz_score_trend reduced the Moderate model output
+- Quiz performance supported the Moderate model output
+
+RECOMMENDED SUPPORT:
+- Prioritize the listed topics with short, topic-specific practice sessions.
+- Review progress after the next learning cycle; these recommendations do not guarantee improvement.
+
+PROGRESS:
+- early_average_topic_score: 63.845
+- early_topic_score_trend: 0.863
+- early_question_accuracy: 0.721
+- early_practice_hours: 1.593

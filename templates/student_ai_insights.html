@@ -1,0 +1,82 @@
+{% extends "student_base.html" %}
+
+{% block title %}AI Learning Insights - Student Learning Support Dashboard{% endblock %}
+
+{% block content %}
+<section id="tab-student-insights" class="view-pane active ai-insights-page">
+    <header class="page-header">
+        <div>
+            <h1>AI Learning Insights</h1>
+            <p>Understand your predicted status and use your real results to choose what to work on next.</p>
+        </div>
+    </header>
+
+    <section class="ai-insights-section ai-prediction-card" aria-labelledby="student-ai-outlook-heading">
+        <div class="ai-insights-section-heading">
+            <div>
+                <span class="ai-section-kicker">AI OUTLOOK</span>
+                <h2 id="student-ai-outlook-heading">Predicted Academic Status</h2>
+                <p>Based on your academic information from Weeks 1–6. This is a model estimate, not a guarantee of future results.</p>
+            </div>
+            <span id="studentInsightsStatusBadge" class="ai-status-badge">Loading...</span>
+        </div>
+        <div class="ai-prediction-content">
+            <div class="ai-confidence-panel">
+                <span class="ai-metric-label">Prediction confidence</span>
+                <strong id="studentInsightsConfidence">--%</strong>
+                <p id="studentInsightsMeaning">A plain-language description of your predicted status will appear here.</p>
+            </div>
+            <div class="ai-probability-panel">
+                <span class="ai-metric-label">Status probability distribution</span>
+                <div class="ai-probability-row">
+                    <div class="ai-probability-label"><span>On Track</span><strong id="valLow">--%</strong></div>
+                    <div class="ai-probability-track"><div id="barLow" class="ai-probability-fill low" role="progressbar" aria-label="On Track status probability" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+                </div>
+                <div class="ai-probability-row">
+                    <div class="ai-probability-label"><span>Needs Attention</span><strong id="valModerate">--%</strong></div>
+                    <div class="ai-probability-track"><div id="barModerate" class="ai-probability-fill moderate" role="progressbar" aria-label="Needs Attention status probability" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+                </div>
+                <div class="ai-probability-row">
+                    <div class="ai-probability-label"><span>At Risk</span><strong id="valHigh">--%</strong></div>
+                    <div class="ai-probability-track"><div id="barHigh" class="ai-probability-fill high" role="progressbar" aria-label="At Risk status probability" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+                </div>
+            </div>
+        </div>
+        <p class="ai-confidence-note" id="studentInsightsConfidenceNote">
+            Confidence describes how certain the model is about its classification. It is not a measure of your ability or a promise of future performance.
+        </p>
+    </section>
+
+    <p class="ai-insights-intro">The focus areas below use your current subject scores, assessment results, and attendance data. Choose one manageable next step at a time.</p>
+
+    <section class="ai-insights-section ai-subject-focus-section" aria-labelledby="student-subject-focus-heading">
+        <div class="ai-insights-section-heading">
+            <div>
+                <span class="ai-section-kicker">SUBJECTS TO FOCUS ON</span>
+                <h2 id="student-subject-focus-heading">Subjects to Focus On</h2>
+                <p>A subject is flagged when its overall score is below 70%, an assessment is below 65%, or its synthetic attendance value is below 75%.</p>
+            </div>
+            <span class="ai-section-icon ai-attention-icon" aria-hidden="true">◎</span>
+        </div>
+        <p class="ai-data-note">Subject attendance values are synthetic demonstrations, not verified records. Your overall recorded attendance remains available on the Performance page.</p>
+        <div id="subjectFocusList" class="subject-focus-grid" aria-live="polite"></div>
+        <p id="subjectFocusEmpty" class="ai-empty-state" hidden></p>
+    </section>
+
+    <section class="ai-insights-section ai-assessment-focus-section" aria-labelledby="student-assessment-focus-heading">
+        <div class="ai-insights-section-heading">
+            <div>
+                <span class="ai-section-kicker">AREAS TO IMPROVE</span>
+                <h2 id="student-assessment-focus-heading">Areas/Topics You Need to Improve</h2>
+                <p>Compare quiz, assignment, and internal assessment results within each subject. Highlighted areas include practical suggestions based on your scores.</p>
+            </div>
+            <span class="ai-section-icon ai-attention-icon" aria-hidden="true">◎</span>
+        </div>
+        <div id="assessmentWeaknessList" class="assessment-weakness-grid" aria-live="polite"></div>
+        <p id="assessmentWeaknessEmpty" class="ai-empty-state" hidden></p>
+        <a class="section-nav-link ai-recommendations-link" href="/student/recommendations?student_id={{ student_id or 'STU-0004' }}#personalised-plan-heading">
+            Open your weekly study plan <span aria-hidden="true">→</span>
+        </a>
+    </section>
+</section>
+{% endblock %}

@@ -1,0 +1,40 @@
+STUDENT: STU-0287
+LEARNING STATUS: Moderate
+
+TOPICS NEEDING ATTENTION:
+- Operating Systems - Deadlocks [High priority]
+  Early score: 49.15; trend: 6.84; question accuracy: 0.50; practice hours: 0.64
+  Why: Lower early topic score, Lower question accuracy, Reduced early practice activity
+  Recommended support: Review deadlock conditions, prevention, avoidance, and detection; practice resource-allocation examples. Practice topic-specific questions and review mistakes after each attempt. Increase practice gradually with one small practice set before the next study session. Use a concise concept review before attempting the practice set.
+- Mathematics - Discrete Mathematics [High priority]
+  Early score: 36.69; trend: 4.26; question accuracy: 0.42; practice hours: 0.64
+  Why: Lower early topic score, Lower question accuracy, Reduced early practice activity
+  Recommended support: Review logic, sets, relations, and counting; practice structured discrete-math problems. Practice topic-specific questions and review mistakes after each attempt. Increase practice gradually with one small practice set before the next study session. Use a concise concept review before attempting the practice set.
+- Database Management Systems - ER Model [High priority]
+  Early score: 46.86; trend: 1.12; question accuracy: 0.56; practice hours: 0.64
+  Why: Lower early topic score, Lower question accuracy, Reduced early practice activity
+  Recommended support: Review entities, relationships, cardinality, and ER diagram construction; complete design exercises. Practice topic-specific questions and review mistakes after each attempt. Increase practice gradually with one small practice set before the next study session. Use a concise concept review before attempting the practice set.
+- Data Structures and Algorithms - Graph Algorithms [High priority]
+  Early score: 50.19; trend: 4.18; question accuracy: 0.56; practice hours: 0.64
+  Why: Lower early topic score, Lower question accuracy, Reduced early practice activity
+  Recommended support: Revise BFS and DFS and practice graph traversal problems. Practice topic-specific questions and review mistakes after each attempt. Increase practice gradually with one small practice set before the next study session. Use a concise concept review before attempting the practice set.
+- Mathematics - Linear Algebra [High priority]
+  Early score: 45.96; trend: 2.75; question accuracy: 0.52; practice hours: 0.64
+  Why: Lower early topic score, Lower question accuracy, Reduced early practice activity
+  Recommended support: Review vectors, matrices, and linear systems; practice worked algebra problems. Practice topic-specific questions and review mistakes after each attempt. Increase practice gradually with one small practice set before the next study session. Use a concise concept review before attempting the practice set.
+
+WHY?
+- Model-contribution reasons describe SHAP contributions to the prediction; they are not causal explanations.
+- Average topic score supported the Moderate model output
+- Assignment performance supported the Moderate model output
+- Question accuracy supported the Moderate model output
+
+RECOMMENDED SUPPORT:
+- Prioritize the listed topics with short, topic-specific practice sessions.
+- Review progress after the next learning cycle; these recommendations do not guarantee improvement.
+
+PROGRESS:
+- early_average_topic_score: 54.033
+- early_topic_score_trend: 2.805
+- early_question_accuracy: 0.608
+- early_practice_hours: 0.635

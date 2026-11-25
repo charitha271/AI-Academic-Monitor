@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Parent Monitoring Dashboard{% endblock %} - AI Academic Monitor</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/design-system.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/chart_theme.js"></script>
+</head>
+<body class="app-body">
+
+<div class="app-layout">
+
+    <!-- ====================================================================
+         LEFT SIDEBAR NAVIGATION (Consistent Across All Parent Pages)
+         ==================================================================== -->
+    <aside class="app-sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <h2>AI Academic Monitor</h2>
+                <span>Parent Portal</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Parent Dashboard Navigation">
+            <a href="/parent?student_id={{ student_id or 'STU-0004' }}" class="nav-item {% if active_page == 'overview' %}active{% endif %}" data-nav="overview" aria-label="Parent Dashboard">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </span>
+                <span class="nav-label">Parent Dashboard</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-role-indicator">
+                <span class="sidebar-role-dot"></span>
+                <span>Parent Access (Read-Only)</span>
+            </div>
+            <a href="/logout" class="sidebar-logout-link" title="Logout and return to role login">
+                <span class="nav-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ====================================================================
+         MAIN APP CONTAINER
+         ==================================================================== -->
+    <div class="app-main-wrapper">
+
+        <!-- Top App Bar (Consistent Header Across All Parent Pages) -->
+        <header class="app-topbar">
+            <div class="topbar-left">
+                <h1 class="topbar-title">Parent Dashboard</h1>
+                <div class="topbar-student-badge">
+                    <span class="badge-label">Student ID:</span>
+                    <strong id="linkedStudentBadge">{{ student_id or 'STU-0004' }}</strong>
+                </div>
+                <span id="topbarStatusBadge" class="status-tag success">Loading...</span>
+            </div>
+
+            <div class="topbar-right">
+                <!-- Compact Student Selector -->
+                <div class="topbar-selector-box">
+                    <label for="studentSelect" class="topbar-select-label">Student:</label>
+                    <select id="studentSelect" class="topbar-select" aria-label="Select Linked Student">
+                        <option value="{{ student_id or 'STU-0004' }}" selected>{{ student_id or 'STU-0004' }}</option>
+                    </select>
+                </div>
+
+                <div id="loadingIndicator" class="loading-indicator" role="status" aria-live="polite" aria-atomic="true" style="display: none;">
+                    <div class="spinner" aria-hidden="true"></div>
+                    <span>Loading...</span>
+                </div>
+
+                <a href="/login" class="topbar-switch-role" title="Change Role or Student Account">
+                    <span>Switch Role</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Body Content Area -->
+        <main class="app-content-area">
+
+            <!-- Error Banner -->
+            <div id="errorBanner" class="error-banner" role="alert" style="display: none;"></div>
+
+            {% block content %}{% endblock %}
+
+        </main>
+
+        <!-- Application Footer -->
+        <footer class="app-footer">
+            <p><strong>Parent — Read-Only Monitoring:</strong> Follow your child's attendance and academic progress. This portal does not provide grade-editing or administrative controls.</p>
+            <p>AI Academic Monitor &bull; Early learning support</p>
+        </footer>
+
+    </div>
+
+</div>
+
+<!-- Client Controller Script -->
+<script src="/static/js/dashboard.js"></script>
+
+</body>
+</html>

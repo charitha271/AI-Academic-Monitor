@@ -1,0 +1,33 @@
+Personalized Learning Support Recommendation Rules
+===================================================
+Scope: early-data-only supportive recommendations; no student labeling or punishment.
+Input weeks: 1-6. Future weeks 7-10 and future-derived topic status are not used for recommendation priority.
+
+Student-level prediction:
+- Load the saved Random Forest model and use the saved 25-feature matrix.
+- predicted_learning_status is the model class with the highest predicted probability.
+- Predicted probabilities are reported for Low, Moderate, and High.
+
+Early topic thresholds (calculated over all student-topic early features):
+- Lower early topic score: average_early_topic_score <= 25th percentile (53.3608). Adds 3 priority points.
+- Declining early trend: early_topic_score_trend <= 25th percentile (-1.4269). Adds 2 priority points.
+- Lower question accuracy: early_question_accuracy <= 25th percentile (0.6364). Adds 2 priority points.
+- Reduced practice: average_early_practice_hours <= 25th percentile (1.0046). Adds 1 priority point.
+- A topic is included when at least one rule triggers; the top five topics by score are reported.
+- Priority: High >= 5 points, Medium = 3-4, Support = 1-2, Monitor = 0.
+
+Support mapping:
+- Every actual topic has a topic-specific concept review and practice action.
+- Declining trend adds prerequisite review and guided practice.
+- Lower question accuracy adds question practice and mistake review.
+- Reduced practice adds a small, gradual practice-set suggestion.
+- Lower early score adds concise concept review before practice.
+
+SHAP use:
+- Per-student SHAP values for the predicted class provide model-contribution reasons.
+- SHAP contributions explain model behavior and do not establish causation.
+
+Limitations:
+- The dataset is synthetic and recommendations are prototype support prompts, not guaranteed interventions.
+- The validated future topic target and topic_summary are loaded for reference/validation only and are excluded from recommendation inputs to avoid leakage.
+- Human review and real learning-resource links are required before deployment.
